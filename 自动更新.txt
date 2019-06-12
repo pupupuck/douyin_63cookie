@@ -1,0 +1,21 @@
+function main()
+CURRENT_VERSION = 1.0
+URL = "C:\Documents and Settings\Administrator\桌面\自动下载"
+versionInfo = httpGet(URL.."version.txt")
+if versionInfo ~= "" then
+newVersion = string.match(versionInfo, "version=([%d.]+)")
+if CURRENT_VERSION < tonumber(newVersion) then
+update
+end
+end
+notifyMessage("version 1.0", 3000)
+end
+function update()
+FTPAddr = "ftp:///"
+FTPUser =""
+FTPPsw = ""
+newfileName = string.match(versionInfo, "fileName=(%S+)")
+newFile = ftpGet(FTPAddr..newfileName, "var/touchelf/scripts/"..newfileName, FTPUser, FTPPsw)
+notifyMessage("脚本已更新"..newVersion.."版本", 3000)
+os.exit(0)
+end

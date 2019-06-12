@@ -1,0 +1,9 @@
+[res]
+appData.zip
+[lib]
+ts.so
+[file]
+app.lua
+function.lua
+TSLib.lua
+main.lua
